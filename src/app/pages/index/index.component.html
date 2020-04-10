@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="wrapper">
+  <div class="page-header header-filter">
+    <div class="squares square1"></div>
+    <div class="squares square2"></div>
+    <div class="squares square3"></div>
+    <div class="squares square4"></div>
+    <div class="squares square5"></div>
+    <div class="squares square6"></div>
+    <div class="squares square7"></div>
+    <div class="container">
+      <div class="content-center brand">
+        <h1 class="h1-seo">My Store•</h1>
+        <h3>
+          Una forma rápida y fácil de realizar tus compras de productos que te gustan.
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-lg">
+    <section class="section">
+
+
+    <div class="row">
+
+      <div class="col-sm-12 col-md-4 col-lg-3" *ngFor="let item of products; index as i" >
+        <div class="section" style="padding: 10px">
+          <div class="container">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="assets/img/blob.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text">{{item.description}}</p>
+              </div>
+              <div class="card-footer">
+                <div class="text-center">
+                  <button class="btn btn-primary" (click)="addProduct(item)" tooltip="Agregar al carrito" ><i class="fas fa-plus"></i> </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    </section>
+  </section>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,91 @@
+<div class="wrapper">
+
+  <section class="section">
+    <div class="container" style="margin-top: 3em">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="card card-plain">
+            <div class="card-header">
+              <h1 class="text-center">Pedidos realizados</h1>
+            </div>
+            <div class="card-body">
+
+              <table id="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Estado</th>
+                  <th>Fecha Creación</th>
+                  <th>Fecha Actulización</th>
+                  <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="orders?.length != 0">
+                <tr *ngFor="let order of orders">
+                  <td>{{ order.id }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>{{order.created_at | date :'d/M/yyyy h:mm:ss a '}}</td>
+                  <td>{{order.updated_at | date :'d/M/yyyy h:mm:ss a '}}</td>
+                  <td>
+                    <label class="form-check-label">
+                      <button class="btn btn-warning btn-tooltip btn-sm mr-1"
+                              data-animation="true"
+                              data-container="body"
+                              placement="top"
+                              tooltip="Ver detalle del pedido"
+                              (click)="openModal(order.id); lgModal.show()"
+                              type="button">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </label>
+                  </td>
+                </tr>
+                </tbody>
+                <tbody *ngIf="orders?.length == 0">
+                  <tr>
+                    <td colspan="7" class="dataTables_empty">No hay datos para mostrar!</td>
+                  </tr>
+                <tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+           role="dialog" aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title pull-left">Detalle del pedido N° <b>{{ idOrder }}</b></h3>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="lgModal.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <h4 class="text-black-50">Información de productos:</h4>
+              <div *ngFor="let detail of orderDetail;">
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul>
+                      <li class="text-black-50">Nombre producto: <b>{{ detail.name }}</b></li>
+                      <li class="text-black-50">Precio: <b>${{ detail.price}}</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <h3 class="text-black-50"><b>Total pedido: ${{ toOrder }}</b></h3>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn float-right btn-round btn-danger" (click)="lgModal.hide()">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

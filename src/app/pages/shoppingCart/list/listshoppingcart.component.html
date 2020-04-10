@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="wrapper">
+
+  <section class="section">
+    <div class="container" style="margin-top: 3em">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="card card-plain">
+            <div class="card-header">
+              <h1 class="text-center">Carrito de compras</h1>
+            </div>
+            <div class="card-body">
+
+              <div class="table-responsive" *ngIf="shoppingCart.length>0;else cartClearTmpl">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="shoppingCart?.length != 0">
+                    <tr *ngFor="let product of shoppingCart; index as i">
+                      <td>{{ product.name }}</td>
+                      <td>{{ product.price }}</td>
+                      <td>
+                          <button class="btn btn-danger btn-tooltip btn-sm mr-1"
+                                  data-animation="true"
+                                  data-container="body"
+                                  placement="top"
+                                  tooltip="Eliminar producto"
+                                  (click)="deleteProduct(i)"
+                                  type="button">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr class="carrito-total">
+                    <td colspan="2"></td>
+                    <td>
+                      Total: ${{total}}
+                    </td>
+                  </tr>
+                  </tfoot>
+
+                </table>
+
+                <button class="btn btn-danger" (click)="clearShoppingCart()">Vaciar carrito</button>
+                <button class="btn btn-success" (click)="pay()" >Pagar</button>
+              </div>
+
+              <ng-template #cartClearTmpl>
+                <div class="margin-top-20">
+                  <strong>El carrito esta vacío.</strong>
+                </div>
+              </ng-template>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <app-footer></app-footer>
+</div>
