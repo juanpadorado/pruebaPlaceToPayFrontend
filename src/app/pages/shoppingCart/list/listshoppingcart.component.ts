@@ -15,8 +15,9 @@ export class ListshoppingcartComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   dtOptions: DataTables.Settings = {};
 
-  public shoppingCart: Array<any> = [];
-  public total: number;
+  disableButton = false;
+  shoppingCart: Array<any> = [];
+  total: number;
 
   constructor(
       private shoppingCartService: ShoppingCartService,
@@ -65,11 +66,13 @@ export class ListshoppingcartComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.disableButton = true;
     const data = {
       products : this.shoppingCart
     };
 
     this.orderService.createOrder(data).subscribe((resp: any) => {
+      this.disableButton = false;
       if (resp.success) {
         Swal.fire({
           type: 'success',
@@ -77,9 +80,11 @@ export class ListshoppingcartComponent implements OnInit, OnDestroy {
           text: resp.message,
         });
         this.clearShoppingCart();
-        this.router.navigate(['/listOrder']);
+        window.open(resp.processUrl, '_blank');
+        // this.router.navigate(['/listOrder']);
       }
     }, error => {
+      this.disableButton = false;
       Swal.fire({
         type: 'error',
         title: 'Oops...',

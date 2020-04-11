@@ -42,6 +42,7 @@ export class ListorderComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: GLOBAL.limit,
       processing: true,
+      order: [[ 0, 'desc' ]]
     };
 
     this.orderService.listOrders().subscribe((resp: any) => {

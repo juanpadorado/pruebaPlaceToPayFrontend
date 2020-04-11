@@ -70,6 +70,16 @@
         </li>
       </ul>
 
+      <ul class="navbar-nav" *ngIf="!isAutenticate()">
+        <li class="dropdown " >
+          <a data-toggle="dropdown"
+             tooltip="Iniciar sesión"
+             [routerLink]="['/login']">
+            <i class="fas fa-sign-in-alt"></i>
+          </a>
+        </li>
+      </ul>
+
       <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isAutenticate()">
         <li class="nav-item dropdown" dropdown>
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
