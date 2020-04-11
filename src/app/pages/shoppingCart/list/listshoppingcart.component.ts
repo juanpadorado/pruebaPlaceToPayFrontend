@@ -81,7 +81,6 @@ export class ListshoppingcartComponent implements OnInit, OnDestroy {
         });
         this.clearShoppingCart();
         window.open(resp.processUrl, '_blank');
-        // this.router.navigate(['/listOrder']);
       }
     }, error => {
       this.disableButton = false;

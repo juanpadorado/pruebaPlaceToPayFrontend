@@ -6,6 +6,7 @@ export let GLOBAL = {
     routeRegister: 'register',
 
     routeOrderRegister : 'orderRegister',
+    routeRetryPayment : 'retryPayment',
     routeListOrders: 'orders',
     routeListOrderDetail: 'orderDetail/',
     routeListProducts: 'products',

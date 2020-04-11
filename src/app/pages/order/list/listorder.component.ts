@@ -20,16 +20,17 @@ export class ListorderComponent implements OnInit, OnDestroy {
   idOrder: number;
   orderDetail: any = [];
   toOrder = 0;
+  disableButton = false;
 
   constructor(
       private orderService: OrderService,
   ) {
-    this.listOrders();
   }
 
   ngOnInit() {
     const body = document.getElementsByTagName('body')[0];
     body.classList.add('profile-page');
+    this.listOrders();
   }
   ngOnDestroy() {
     const body = document.getElementsByTagName('body')[0];
@@ -60,7 +61,6 @@ export class ListorderComponent implements OnInit, OnDestroy {
         }
       }
     }, error => {
-      console.log(error);
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -90,4 +90,33 @@ export class ListorderComponent implements OnInit, OnDestroy {
     });
   }
 
+  retryPayment(id) {
+
+    this.disableButton = true;
+    const data = {
+      idOrder : id
+    };
+
+    this.orderService.retryPayment(data).subscribe((resp: any) => {
+      if (resp.success) {
+        this.disableButton = false;
+        window.open(resp.processUrl, '_blank');
+
+        Swal.fire({
+          type: 'success',
+          title: 'Éxito',
+          text: resp.message,
+        });
+
+        this.ngOnInit();
+      }
+    }, error => {
+      this.disableButton = false;
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message,
+      });
+    });
+  }
 }

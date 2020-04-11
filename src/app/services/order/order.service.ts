@@ -6,12 +6,17 @@ import {Injectable} from '@angular/core';
     providedIn: 'root'
 })
 
+/*Clase de servicios para gestionar ordenes en el sistema*/
 export class OrderService {
 
     constructor(private http: HttpClient) {}
 
     createOrder(data: any) {
         return this.http.post<any>(GLOBAL.http + GLOBAL.routeOrderRegister, data);
+    }
+
+    retryPayment(data: any) {
+        return this.http.post<any>(GLOBAL.http + GLOBAL.routeRetryPayment, data);
     }
 
     listOrders() {
