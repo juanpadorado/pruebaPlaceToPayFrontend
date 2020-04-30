@@ -78,7 +78,7 @@
     "core-js": "3.2.1",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "jwt-decode": "^2.2.0",
     "ngx-bootstrap": "5.1.2",
