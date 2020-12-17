@@ -76,7 +76,7 @@
     "angular-datatables": "^8.0.0",
     "chart.js": "2.8.0",
     "core-js": "3.2.1",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.20",
     "jquery": "^3.4.1",
     "jw-bootstrap-switch-ng2": "2.0.5",
